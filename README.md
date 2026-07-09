@@ -1,18 +1,23 @@
 # t3pcl2pdf
 
-Convert **T3 Scientific Word Processor** PCL print output to searchable PDF.
+Convert **T3 Scientific Word Processor** PCL print output to PDF.
 
-T3 (from the 1980s–90s) prints to an HP LaserJet II by first downloading its own bitmap soft fonts to the printer, then sending the document. When running T3 in DOSBox with a virtual printer, this produces `.prt` files that `gpcl6` (Ghostscript's PCL interpreter) cannot handle correctly without those fonts — the result has wrong Swedish/special characters, garbled formula symbols, and oddly spread text.
+Mårten Stenius - marten@stenius.org
 
-This tool reconstructs a self-contained PCL stream by prepending the T3 bitmap fonts, then converts it to a proper searchable PDF with correct layout and characters.
+**The T3 Scientific Word Processor** from the 1980s–90s could be set up to print to an HP LaserJet II printer. It did this by first downloading its own bitmap soft fonts to the printer, then sending the document. When running T3 in DOSBox with a virtual printer, this produces `.prt` files that `gpcl6` (Ghostscript's PCL interpreter) cannot handle correctly without those fonts — the result has wrong Swedish/special characters, garbled formula symbols, and oddly spread text.
+
+This tool reconstructs a self-contained PCL stream by prepending the T3 bitmap fonts, then converts it to a PDF with layout and characters to reproduced to some extent.
+
+As such, the result is not a replica of the original printouts but at least a link in the chain to export documents
+in the archaic T3 format to something more accessible.
 
 ## Features
 
-- Correct rendering of Swedish characters (å, ä, ö and uppercase equivalents)
 - Correct formula/math symbols (S1 and Symbol fonts)
 - Removes T3's shadow-bold overprints so text is clean (not doubled/ghosted)
 - Output PDF is fully text-selectable and searchable
 - Supports T3's full Swedish extended font set (58 fonts)
+- Correct rendering of Swedish characters (å, ä, ö and uppercase equivalents)
 
 ## Prerequisites
 
