@@ -11,19 +11,20 @@ This tool reconstructs a self-contained PCL stream by prepending the T3 bitmap f
 As such, the result is not a replica of the original printouts but at least a link in the chain to export documents
 in the archaic T3 format to something more accessible.
 
+The script is the result of iterative experimentation with various sample documents with indispensable analytic help by Claude Opus 4.8 - both in figuring out how to get rid of the strange bold character effects and how to properly embed the fonts in the PCL streams before converting.
+
 ## Features
 
-- Correct formula/math symbols (S1 and Symbol fonts)
+- Rendering of formula/math symbols (S1 and Symbol fonts)
 - Removes T3's shadow-bold overprints so text is clean (not doubled/ghosted)
-- Output PDF is fully text-selectable and searchable
 - Supports T3's full Swedish extended font set (58 fonts)
-- Correct rendering of Swedish characters (å, ä, ö and uppercase equivalents)
+- Rendering of Swedish characters (å, ä, ö and uppercase equivalents)
 
 ## Prerequisites
 
 ### 0. DOSBox
 
-Install DOSBox on your system.
+Install DOSBox on your system using whatever method is best suited.
 
 In your DOSBox `.conf`, configure a virtual LPT1 printer that writes to a file:
 
@@ -67,10 +68,11 @@ mkdir -p /opt/homebrew/share/ghostscript/pcl-fonts
 > If that URL doesn't work, find the matching tarball at  
 > https://github.com/ArtifexSoftware/ghostpdl-downloads/releases
 
+Apologies for the above, it is somewhat messy and could probably be simplified.
+
 ### 3. T3 installation with HPLJ fonts
 
-You need a full T3 installation configured for HP LaserJet II printing. The recommended way is to locate 
-original T3 installation media and perform a complete installatin from scratch in your DOSBox environment.
+You need a full T3 installation configured for HP LaserJet II printing. The recommended way is to (somehow) locate original T3 installation media and perform a complete installatin from scratch in your DOSBox environment.
 
 Such an installation will contain `.HPP` bitmap font files (`IBM12.HPP`, `KU.HPP`, `IBM17SV.HPP`, etc.). In a typical DOSBox setup they live at:
 
@@ -218,6 +220,7 @@ The following T3 font IDs (from `FONTNASV.TBL`) are supported:
 - **Bold weight**: After deduplication, bold/title text is rendered at normal (single-print) weight, which is lighter than the original printed output. This is inherent to the text-selectable PDF format — merging the overprints would require rasterisation, which makes text non-selectable.
 - **Landscape fonts**: The `.HPL` landscape font files are not yet handled; landscape pages will use fallback fonts.
 - **Non-Swedish T3 variants**: This font table covers the Swedish extended character set (`FONTNASV.TBL`). A base T3 installation uses a subset of these IDs.
+- **Not really copy-paste ready**: Attempts to copy text from the PDF printout yields strings with spaces between words and other artefacts.
 
 ## Files
 

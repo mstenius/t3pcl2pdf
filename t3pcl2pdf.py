@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-t3pcl2pdf.py – Convert T3 Scientific Word Processor PCL output to PDF.
+t3pcl2pdf.py - Convert T3 Scientific Word Processor PCL output to PDF.
 
 T3 downloads its bitmap soft fonts to the HP LaserJet before each print job.
 The .prt file contains only the document body, referencing those font IDs.
@@ -8,7 +8,7 @@ This script:
   1. Scans the .prt file for font-selection commands (ESC(<id>X).
   2. Prepends the matching .HPP soft-font data so the PCL stream is
      self-contained and gpcl6 can interpret it correctly.
-  3. Removes T3's shadow-bold overprints (the same character printed 2–9
+  3. Removes T3's shadow-bold overprints (the same character printed 2-9
      times at sub-pixel offsets to simulate bold on paper) so the PDF does
      not show doubled/ghosted glyphs.
   4. Feeds the cleaned stream to gpcl6 to produce a searchable PDF.
@@ -156,9 +156,9 @@ def deduplicate_shadow_bold(doc: bytes, threshold: int = 18) -> bytes:
     Body text (already single-print) is unaffected.
 
     Observed overprint counts by font:
-      IBM17SV (17pt titles)  : 9× overprint
-      IBM12   (body bold)    : 2–3× overprint
-      KU      (italic)       : 3× overprint
+      IBM17SV (17pt titles)  : 9x overprint
+      IBM12   (body bold)    : 2-3x overprint
+      KU      (italic)       : 3x overprint
     """
     # Tokenise the PCL stream
     tokens = []
