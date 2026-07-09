@@ -6,7 +6,7 @@ Mårten Stenius - marten@stenius.org
 
 **The T3 Scientific Word Processor** from the 1980s–90s could be set up to print to an HP LaserJet II printer. It did this by first downloading its own bitmap soft fonts to the printer, then sending the document. When running T3 in DOSBox with a virtual printer, this produces `.prt` files that `gpcl6` (Ghostscript's PCL interpreter) cannot handle correctly without those fonts — the result has wrong Swedish/special characters, garbled formula symbols, and oddly spread text.
 
-This tool reconstructs a self-contained PCL stream by prepending the T3 bitmap fonts, then converts it to a PDF with layout and characters to reproduced to some extent.
+This tool reconstructs a self-contained PCL (Printer Control Language) stream by prepending the T3 bitmap fonts, then converts it to a PDF with layout and characters to reproduced to some extent.
 
 As such, the result is not a replica of the original printouts but at least a link in the chain to export documents
 in the archaic T3 format to something more accessible.
@@ -166,60 +166,14 @@ Observed T3 overprint counts by font:
 | IBM12 | 12pt body bold | 2–3× |
 | KU | Italic/kursiv | 3× |
 
-## Font table
-
-The following T3 font IDs (from `FONTNASV.TBL`) are supported:
-
-| ID | HPP file | Description |
-|----|----------|-------------|
-| 2 | BUILT12F.HPP | Built Up Elite |
-| 3 | CHEM12F.HPP | Chemistry |
-| 5 | CYRIL12.HPP | Cyrillic |
-| 6 | FRAK12.HPP | Fraktur |
-| 7 | GREEK12.HPP | Greek |
-| 8 | IBM10.HPP | IBM 10pt |
-| 9 | IBM10F.HPP | IBM 10pt Fixed |
-| 10 | IBM12.HPP | IBM 12pt (main body) |
-| 13 | IBM12SL.HPP | IBM 12pt Slant |
-| 14 | IBM12SS.HPP | IBM 12pt Sans Serif |
-| 15 | IBM12TT.HPP | IBM 12pt Typewriter |
-| 19 | IBMU12F.HPP | IBMUpper Elite |
-| 21 | IBMU12SL.HPP | IBMUpper Slant |
-| 22 | IBMU12.HPP | IBMUpper 12pt |
-| 23 | IBMU17SL.HPP | IBMUpper 17pt Slant |
-| 24 | IBMU17.HPP | IBMUpper 17pt |
-| 25 | ITAL10.HPP | Italics 10pt |
-| 26 | ITAL12.HPP | Italics 12pt |
-| 31 | LTAC12SL.HPP | Latin Accents Slant |
-| 32 | LTAC12.HPP | Latin Accents |
-| 33 | LTAC17SL.HPP | Latin Accents 17pt Slant |
-| 34 | LTAC17.HPP | Latin Accents 17pt |
-| 35 | S112F.HPP | S1 math symbols |
-| 37 | SCRIPT12.HPP | Script |
-| 38 | SMALL12.HPP | Small caps |
-| 39 | SYM12F.HPP | Symbol |
-| 41 | FRAKSV.HPP | Fraktur Swedish |
-| 42 | IB17SNSV.HPP | IBM 17pt Slant Swedish |
-| 43 | IB17SSSV.HPP | IBM 17pt SS Swedish |
-| 44 | IBM10FSV.HPP | IBM 10pt Fixed Swedish |
-| 45 | IBM10SV.HPP | IBM 10pt Swedish |
-| 46 | IBM17SV.HPP | IBM 17pt Swedish (titles) |
-| 47 | IBMELSV.HPP | IBM Elite Swedish |
-| 49 | IBMSKRM.HPP | IBM Typewriter Swedish |
-| 50 | IBMSNESV.HPP | IBM Slant Swedish |
-| 51 | IBMSSSV.HPP | IBM SS Swedish |
-| 52 | IBMSV.HPP | IBM 12pt Swedish |
-| 53 | KU.HPP | Kursiv (italic) Swedish |
-| 54 | KU10.HPP | Kursiv 10pt |
-| 55 | KUEL.HPP | Kursiv Elite |
-| 57 | SKRIV.HPP | Skrivstil (handwriting) |
-| 58 | SMAA.HPP | Smaa (small) |
-
 ## Known limitations
 
 - **Bold weight**: After deduplication, bold/title text is rendered at normal (single-print) weight, which is lighter than the original printed output. This is inherent to the text-selectable PDF format — merging the overprints would require rasterisation, which makes text non-selectable.
+
 - **Landscape fonts**: The `.HPL` landscape font files are not yet handled; landscape pages will use fallback fonts.
+
 - **Non-Swedish T3 variants**: This font table covers the Swedish extended character set (`FONTNASV.TBL`). A base T3 installation uses a subset of these IDs.
+
 - **Not really copy-paste ready**: Attempts to copy text from the PDF printout yields strings with spaces between words and other artefacts.
 
 ## Files
