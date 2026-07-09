@@ -11,7 +11,7 @@ This tool reconstructs a self-contained PCL (Printer Control Language) stream by
 As such, the result is not a replica of the original printouts but at least a link in the chain to export documents
 in the archaic T3 format to something more accessible.
 
-The script is the result of iterative experimentation with various sample documents with indispensable analytic help by Claude Opus 4.8 - both in figuring out how to get rid of the strange bold character effects and how to properly embed the fonts in the PCL streams before converting.
+The script is the result of iterative experimentation with various sample documents with indispensable analytic help by Claude Sonnet 4.6 - both in figuring out how to get rid of the strange bold character effects and how to properly embed the fonts in the PCL streams before converting.
 
 ## Features
 
@@ -172,7 +172,7 @@ Observed T3 overprint counts by font:
 
 - **Landscape fonts**: The `.HPL` landscape font files are not yet handled; landscape pages will use fallback fonts.
 
-- **Non-Swedish T3 variants**: This font table covers the Swedish extended character set (`FONTNASV.TBL`). A base T3 installation uses a subset of these IDs.
+- **Non-Swedish T3 variants**: This has only been tried with the Swedish extended character set (`FONTNASV.TBL`).
 
 - **Not really copy-paste ready**: Attempts to copy text from the PDF printout yields strings with spaces between words and other artefacts.
 
